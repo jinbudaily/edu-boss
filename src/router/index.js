@@ -54,14 +54,14 @@ const routes = [
       {
         path: '/advert-space',
         name: 'advert-space',
-        component: () => import(/* webpackChunkName: 'advert-space */'@/views/advert-space/index.vue')
+        component: () => import(/* webpackChunkName: 'advert-space' */'@/views/advert-space/index.vue')
       }
     ]
   },
   {
     path: '*',
     name: 'error-page',
-    component: import(/* webpackChunkName: 'error-page */'@/views/error-page/index.vue')
+    component: import(/* webpackChunkName: 'error-page' */'@/views/error-page/index.vue')
   }
 ]
 
