@@ -30,7 +30,6 @@ export default {
   // created中加载用户信息，钩子中不建议书写逻辑,写封装的逻辑，逻辑在methods中书写
   created () {
     this.loadUserInfo()
-    this.loadUserInfo()
   },
   data () {
     return {
