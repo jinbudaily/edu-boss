@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // 引入路由中需要使用的组件
 // import Login from '@/views/login/index.vue'
+// 引入Store
+import store from '@/store/index.js'
 
 Vue.use(VueRouter)
 
@@ -15,6 +17,8 @@ const routes = [
   {
     path: '/',
     component: () => import(/* webpackChunkName: 'layout' */'@/views/layout/index.vue'),
+    // 直接给某个路由设置，这时内部的子路由都需要认证（包含当前路由）
+    meta: { requiresAuth: true },
     children: [
       {
         path: '',
@@ -61,7 +65,7 @@ const routes = [
   {
     path: '*',
     name: 'error-page',
-    component: import(/* webpackChunkName: 'error-page' */'@/views/error-page/index.vue')
+    component: () => import(/* webpackChunkName: 'error-page' */'@/views/error-page/index.vue')
   }
 ]
 
@@ -69,4 +73,28 @@ const router = new VueRouter({
   routes
 })
 
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  // 验证to路由是否需要进行身份认证
+  // console.log(to)
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // console.log('当前页面需要认证')
+    // 未登录，跳转到登录页面（并把访问的
+    if (!store.state.user) {
+      return next({
+        name: 'login',
+        // query就是查询字符串参数，?name=zs&age=20
+        // 将本次路由的fulPath传递给login页面
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    }
+    // 已经登录，允许登录
+    next()
+  } else {
+    // console.log('当前页面不需要认证')
+    next()
+  }
+})
 export default router

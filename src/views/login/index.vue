@@ -61,9 +61,11 @@ export default {
         delay: 2000
       })
       */
+      /*
       this.$store.dispatch('addHandler', { count: 5, delay: 2000 })
       this.$store.dispatch('addHandler', { count: 2, delay: 1000 })
       this.$store.dispatch('addHandler', { count: 1, delay: 500 })
+      */
       /*
       this.$refs.form.validate(valid => {
         console.log(valid)  // false或true
@@ -98,10 +100,11 @@ export default {
         this.isLoginLoading = false
         // console.log(data) // 根究data的结果进行响应结果处理
         if (data.state === 1) {
-          this.$router.push({
-            name: 'home'
-          })
           this.$message.success('登录成功')
+          // 将登陆信息存储到vuex中
+          this.$store.commit('setUser', data.content)
+          // 根据可能存在的redirect数据进行跳转设置
+          this.$router.push(this.$route.query.redirect || '/')
         } else {
           // alert(data.message)
           this.$message.error('登录失败')

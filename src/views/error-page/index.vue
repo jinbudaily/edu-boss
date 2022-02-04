@@ -1,6 +1,6 @@
 <template>
   <div class="error-page">
-      404
+      <h1>Error</h1>
   </div>
 </template>
 
@@ -11,5 +11,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>
