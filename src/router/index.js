@@ -36,6 +36,11 @@ const routes = [
         component: () => import(/* webpackChunkName: 'resource' */'@/views/resource/index.vue')
       },
       {
+        path: '/resourceCategory',
+        name: 'resource-category',
+        component: () => import(/* webpackChunkName: 'resource-category' */'@/views/resource/resourceCategory.vue')
+      },
+      {
         path: '/menu',
         name: 'menu',
         component: () => import(/* webpackChunkName: 'menu' */'@/views/menu/index.vue')
@@ -50,6 +55,13 @@ const routes = [
         name: 'menu-edit',
         component: () => import(/* webpackChunkName: 'menu-edit' */'@/views/menu/menu-edit.vue')
       },
+      // 分配菜单路由组件
+      {
+        path: '/role/:roleId/alloc-menu',
+        name: 'alloc-menu',
+        component: () => import(/* webpackChunkName: 'alloc-menu' */'@/views/role/alloc-menu.vue'),
+        props: true
+      },
       {
         path: '/user',
         name: 'user',
@@ -59,6 +71,11 @@ const routes = [
         path: '/course',
         name: 'course',
         component: () => import(/* webpackChunkName: 'course' */'@/views/course/index.vue')
+      },
+      {
+        path: '/course/create',
+        name: 'course-create',
+        component: () => import(/* webpackChunkName: 'course-create' */'@/views/course/create.vue')
       },
       {
         path: '/advert',

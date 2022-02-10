@@ -1,15 +1,18 @@
 <template>
   <div class="user">
-      用户管理
+      <user-list></user-list>
   </div>
 </template>
 
 <script>
+import UserList from './components/List.vue'
 export default {
-  name: 'User'
+  name: 'User',
+  components: {
+    UserList
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-
 </style>
