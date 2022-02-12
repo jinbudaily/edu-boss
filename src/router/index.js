@@ -77,6 +77,20 @@ const routes = [
         name: 'course-create',
         component: () => import(/* webpackChunkName: 'course-create' */'@/views/course/create.vue')
       },
+      // 编辑课程组件
+      {
+        path: '/course/:courseId/edit',
+        name: 'course-edit',
+        component: () => import(/* webpackChunkName: 'course-edit' */'@/views/course/edit.vue'),
+        props: true
+      },
+      // 上传课程内容管理
+      {
+        path: '/course/:courseId/section',
+        name: 'course-section',
+        component: () => import(/* webpackChunkName: 'course-section' */'@/views/course/section.vue'),
+        props: true
+      },
       {
         path: '/advert',
         name: 'advert',
